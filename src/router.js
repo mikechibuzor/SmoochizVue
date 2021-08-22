@@ -5,6 +5,7 @@ import Shop from "./components/pages/Shop.vue";
 import ContactUs from "./components/pages/ContactUs.vue";
 import Blog from "./components/pages/Blog.vue";
 import AboutUs from "./components/pages/AboutUs.vue";
+import CategoryPage from './components/pages/CategoryPage.vue';
 import NotFound from "./components/pages/NotFound.vue";
 
 const router = createRouter({
@@ -30,6 +31,10 @@ const router = createRouter({
     {
       path: "/contact-us",
       component: ContactUs,
+    },
+    {
+      path: "/category/:categoryId",
+      component: CategoryPage
     },
     {
       path: "/:notFound(.*)",
