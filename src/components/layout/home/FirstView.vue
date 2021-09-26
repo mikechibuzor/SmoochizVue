@@ -1,6 +1,6 @@
 <template>
     <div class="first-content">
-    <custom-carousel :imagesObject="imagesObject"></custom-carousel>
+    <custom-carousel ></custom-carousel>
 
     <!-- Who we are starts -->
     <div

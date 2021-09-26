@@ -1,8 +1,7 @@
 <template>
-  <div class="">
+  <div class="object-cover h-full w-full">
       <img class="w-full h-full object-cover"  :src="publicPath + '' + imageSrc" :alt="altText" />
       <div class="absolute top-72 left-96">
-      
           <slot></slot>
       </div>
   </div>
@@ -10,7 +9,7 @@
 
 <script>
 export default {
-    props: ['imageSrc', 'altText'],
+    props: ['imageSrc', 'altText', "id"],
      data(){
         return {
             publicPath: process.env.BASE_URL,

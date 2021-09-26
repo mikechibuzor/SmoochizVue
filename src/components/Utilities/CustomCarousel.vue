@@ -1,36 +1,35 @@
 <template>
   <div class="carousel-container relative  h-height80">
       
-    <image-slide class="absolute w-full h-full"
-        v-for="image in imagesObject"
-        :imageSrc="image.src"
+    <image-slide class="absolute w-full h-full flex items-end justify-end"
+        v-for="image in imagesObject.reverse()"
+        :imageSrc="image.imageSource"
         :key="image.id"
         :id="image.id" 
-        :altText="image.alt">
-
-        <p>{{ image.alt }}</p>
-        
+        :altText="image.altTxt"
+    >
+        <p class="text-green-600">{{ image.altText }}</p> 
     </image-slide>
      
-      <div class="controllers  relative  w-full h-full z-10 flex flex-col items-center px-4 md:px-8 xl:px-16   ">
-        
-         <div class="flex items-center w-full h-full justify-between">
-            <div class="flex items-center justify-center previous  h-10 rounded-sm opacity-70 w-10 cursor-pointer">
-                <svg class="w-2/3 h-2/3"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-          </div>
-
-          <div class="flex items-center justify-center next h-10 rounded-sm opacity-70 w-10 cursor-pointer">
-            <svg class="w-2/3 h-2/3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    <div class="controllers  relative  w-full h-full z-10 flex flex-col items-center px-4 md:px-8 xl:px-16   ">
+    
+        <div class="flex items-center w-full h-full justify-between">
+        <div class="flex items-center justify-center previous  h-10 rounded-sm opacity-70 w-10 cursor-pointer">
+            <svg class="w-2/3 h-2/3"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-          </div>
-         </div>
+        </div>
 
-          <div class="itemCircle flex items-center justify-center w-full h-8 " ref="itemCircle">
-          </div>          
-      </div>
+        <div class="flex items-center justify-center next h-10 rounded-sm opacity-70 w-10 cursor-pointer">
+        <svg class="w-2/3 h-2/3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+        </div>
+        </div>
+
+        <div class="itemCircle flex items-center justify-center w-full h-8 " ref="itemCircle">
+        </div>          
+    </div>
   </div>
 </template>
 
@@ -38,7 +37,6 @@
 import ImageSlide from './ImageSlide.vue';
 export default {
   components: { ImageSlide },
-    props: ['imagesObject'],
     methods: {
         createItemCircle(){
             this.imagesObject.forEach(()=>{
@@ -53,8 +51,14 @@ export default {
             console.log('i was clicked');
         }
     },
+    computed:{
+        imagesObject(){
+           return this.$store.getters["carousel/getCarousel"]; 
+        }
+    },
     mounted(){
         this.createItemCircle();
+        
     }
 }
 </script>
